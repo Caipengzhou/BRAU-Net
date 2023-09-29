@@ -1,0 +1,9 @@
+einops==0.6.1
+fairscale==0.4.6
+numpy==1.21.5
+Pillow==9.4.0
+PyYAML==6.0.1
+scipy==1.7.3
+SimpleITK==2.2.1
+timm==0.6.13
+yacs==0.1.8
