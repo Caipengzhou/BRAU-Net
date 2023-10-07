@@ -1,5 +1,5 @@
 # BRAU-Net
-The codes for the work "Pubic Symphysis-Fetal Head Segmentation Using Pure Transformer with Bi-level Routing Attention"(https://arxiv.org/pdf/2310.00289.pdf). We updated the Reproducibility. I hope this will help you to reproduce the results.
+The codes for the work "Pubic Symphysis-Fetal Head Segmentation Using Pure Transformer with Bi-level Routing Attention"(https://arxiv.org/pdf/2310.00289.pdf). I hope this will help you to reproduce the results.
 
 ## 1. Prepare data
 - We convert each training image and mask into an npz file.
