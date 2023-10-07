@@ -1,0 +1,30 @@
+# BRAU-Net
+The codes for the work "Pubic Symphysis-Fetal Head Segmentation Using Pure Transformer with Bi-level Routing Attention![image](https://github.com/Caipengzhou/BRAU-Net/assets/137134423/b3bf0172-4dd4-41a3-91c2-f4b0cbbff6f1)
+"(https://arxiv.org/pdf/2310.00289.pdf). We updated the Reproducibility. I hope this will help you to reproduce the results.
+
+## 1. Prepare data
+- We convert each training image and mask into an npz file.
+
+## 2. Environment
+- Please prepare an environment with python=3.7, and then use the command "pip install -r requirements.txt" for the dependencies.
+  
+## 3. Train/Test
+
+- Run the train script on PS-FH-AOP dataset. The batch size we used is 4. 
+
+- Train
+
+```bash
+python train.py --dataset Psfh  --root_path your DATA_DIR --max_epochs 100 --output_dir your OUT_DIR  --img_size 256 --base_lr 0.001 --batch_size 4
+```
+
+- Test 
+
+```bash
+python num_pre.py
+```
+
+## References
+* [Swin-Unet](https://github.com/HuCaoFighting/Swin-Unet)
+* [BiFormer](https://github.com/rayleizhu/BiFormer)
+
