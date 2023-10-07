@@ -3,7 +3,6 @@ import torch
 from scipy.ndimage import zoom
 import copy
 from PIL import Image
-# comments
 def test_single_volume(image, net, patch_size=[256, 256], test_save_path=None):
     image = image.squeeze(0)
     image = image.transpose(2,0,1)

@@ -1,8 +1,4 @@
-import copy
-
-import numpy as np
 import torch
-from PIL import Image
 from medpy import metric
 from scipy.ndimage import zoom
 import torch.nn as nn
