@@ -30,28 +30,28 @@ from utils import test_single_volume
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--root_path', type=str,
-                    default='./data/Psfh', help='root dir for data')#根目录
+                    default='./data/Psfh', help='root dir for data')
 parser.add_argument('--dataset', type=str,
-                    default='Psfh', help='experiment_name')#数据集
+                    default='Psfh', help='experiment_name')
 parser.add_argument('--list_dir', type=str,
-                    default='./lists/lists_Psfh', help='list dir')#由npz格式文件生成txt文件的list目录
+                    default='./lists/lists_Psfh', help='list dir')
 parser.add_argument('--num_classes', type=int,
-                    default=3, help='output channel of network')#类别数，这里是2类，前景和背景
-parser.add_argument('--output_dir', default='./output/Psfh', type=str, help='output dir')#输出文件存放的位置
+                    default=3, help='output channel of network')
+parser.add_argument('--output_dir', default='./output/Psfh', type=str, help='output dir')
 parser.add_argument('--max_iterations', type=int,
-                    default=51000, help='maximum epoch number to train')#最大迭代次数，30000
+                    default=51000, help='maximum epoch number to train')
 parser.add_argument('--max_epochs', type=int,
-                    default=100, help='maximum epoch number to train')#训练次数，150
+                    default=100, help='maximum epoch number to train')
 parser.add_argument('--batch_size', type=int,
-                    default=4, help='batch_size per gpu')#每12张图像作为一个batch
+                    default=4, help='batch_size per gpu')
 parser.add_argument('--n_gpu', type=int, default=1, help='total gpu')
 parser.add_argument('--deterministic', type=int,  default=1,
                     help='whether use deterministic training')
-parser.add_argument('--base_lr', type=float,  default=0.001,#学习率初始为0.01
+parser.add_argument('--base_lr', type=float,  default=0.001,
                     help='segmentation network learning rate')
-parser.add_argument('--img_size', type=int,#图片尺寸为224x224
+parser.add_argument('--img_size', type=int,
                     default=256, help='input patch size of network input')
-parser.add_argument('--seed', type=int, default=1234, help='random seed')#随机初始化的随机种子
+parser.add_argument('--seed', type=int, default=1234, help='random seed')
 parser.add_argument(
         "--opts",
         help="Modify config options by adding 'KEY VALUE' pairs. ",
@@ -111,7 +111,7 @@ def trainer_Psfh(args, model, snapshot_path):
     writer = SummaryWriter(snapshot_path + '/log')
     iter_num = 0
     max_epoch = args.max_epochs
-    max_iterations = args.max_epochs * len(trainloader)  # max_epoch = max_iterations // len(trainloader) + 1
+    max_iterations = args.max_epochs * len(trainloader)
     logging.info("{} iterations per epoch. {} max iterations ".format(len(trainloader), max_iterations))
     best_performance = 0.0
     save_best_path = None
