@@ -2,7 +2,7 @@
 The codes for the work "Pubic Symphysis-Fetal Head Segmentation Using Pure Transformer with Bi-level Routing Attention"(https://arxiv.org/pdf/2310.00289.pdf). I hope this will help you to reproduce the results.
 
 ## 1. Prepare data
-- We convert each training image and mask into a npz file. Get processed train data in this link. (https://drive.google.com/file/d/1HPy_4OrMWCn0g3JYIJlpwBKXsiEBxQAY/view?usp=sharing).Please go to "./data/README.md" for details.
+- We convert each training image and mask into a npz file. Get processed train data in this link. (https://drive.google.com/file/d/1HPy_4OrMWCn0g3JYIJlpwBKXsiEBxQAY/view?usp=sharing). Please go to "./data/README.md" for details.
 
 ## 2. Environment
 - Please prepare an environment with python=3.7, and then use the command "pip install -r requirements.txt" for the dependencies.
