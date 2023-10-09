@@ -146,28 +146,28 @@ def trainer_Psfh(args, model, snapshot_path):
                 labs = label_batch[1, ...].unsqueeze(0) * 50
                 writer.add_image('train/GroundTruth', labs, iter_num)
 
-            if iter_num > 0 and iter_num % 1000 == 0:
-                print('Current learning rate:', optimizer.param_groups[0]['lr'])
-                model.eval()
-                metric_list = 0.0
-                total_loss = 0.0
-                for i_batch, sampled_batch in enumerate(testloader):
-                    image, label, case_name = sampled_batch["image"], sampled_batch["label"], sampled_batch['case_name'][0]
-                    metric_i, prediction, loss = test_single_volume(image, label, model, classes=args.num_classes, patch_size=[args.img_size, args.img_size],test_save_path=None, case=case_name,z_spacing=1)
-                    total_loss += loss
-                    metric_list += np.array(metric_i)
-                val_loss = total_loss / len(db_test)
-                print('Validation Loss:', val_loss)
-                metric_list = metric_list / len(db_test)
-                performance = np.mean(metric_list, axis=0)[0]
-                mean_hd95 = np.mean(metric_list, axis=0)[1]
-                if performance > best_performance:
-                    best_performance = performance
-                    if save_best_path and os.path.exists(save_best_path):
-                        os.remove(save_best_path)
-                    save_best_path = os.path.join(snapshot_path, 'best_model.pth'.format(performance))
-                    torch.save(model.state_dict(), save_best_path)
-                logging.info('iteration %d : mean_dice : %f mean_hd95 : %f  ' % (iter_num, performance, mean_hd95))
+            # if iter_num > 0 and iter_num % 1000 == 0:
+            #     print('Current learning rate:', optimizer.param_groups[0]['lr'])
+            #     model.eval()
+            #     metric_list = 0.0
+            #     total_loss = 0.0
+            #     for i_batch, sampled_batch in enumerate(testloader):
+            #         image, label, case_name = sampled_batch["image"], sampled_batch["label"], sampled_batch['case_name'][0]
+            #         metric_i, prediction, loss = test_single_volume(image, label, model, classes=args.num_classes, patch_size=[args.img_size, args.img_size],test_save_path=None, case=case_name,z_spacing=1)
+            #         total_loss += loss
+            #         metric_list += np.array(metric_i)
+            #     val_loss = total_loss / len(db_test)
+            #     print('Validation Loss:', val_loss)
+            #     metric_list = metric_list / len(db_test)
+            #     performance = np.mean(metric_list, axis=0)[0]
+            #     mean_hd95 = np.mean(metric_list, axis=0)[1]
+            #     if performance > best_performance:
+            #         best_performance = performance
+            #         if save_best_path and os.path.exists(save_best_path):
+            #             os.remove(save_best_path)
+            #         save_best_path = os.path.join(snapshot_path, 'best_model.pth'.format(performance))
+            #         torch.save(model.state_dict(), save_best_path)
+            #     logging.info('iteration %d : mean_dice : %f mean_hd95 : %f  ' % (iter_num, performance, mean_hd95))
             model.train()
         save_interval = 10  # int(max_epoch/6)
         if epoch_num > int(max_epoch / 10) and (epoch_num + 1) % save_interval == 0:
