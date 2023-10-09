@@ -1,29 +1,29 @@
-# BRAU-Net
-The codes for the work "Pubic Symphysis-Fetal Head Segmentation Using Pure Transformer with Bi-level Routing Attention"(https://arxiv.org/pdf/2310.00289.pdf). I hope this will help you to reproduce the results.
+# Data Preparing
 
-## 1. Prepare data
-- We convert each training image and mask into a npz file. Get processed train data in this link. (https://drive.google.com/file/d/1HPy_4OrMWCn0g3JYIJlpwBKXsiEBxQAY/view?usp=sharing)
-
-## 2. Environment
-- Please prepare an environment with python=3.7, and then use the command "pip install -r requirements.txt" for the dependencies.
-  
-## 3. Train/Test
-
-- Run the train script on PS-FH-AOP dataset. The batch size we used is 4. 
-
-- Train
+1. Access to the synapse multi-organ dataset:
+   1. Sign up in the [official Synapse website](https://www.synapse.org/#!Synapse:syn3193805/wiki/) and download the dataset. Convert them to numpy format, clip the images within [-125, 275], normalize each 3D image to [0, 1], and extract 2D slices from 3D volume for training cases while keeping the 3D volume in h5 format for testing cases.
+   2.  You can also send an Email directly to jienengchen01 AT gmail.com to request the preprocessed data for reproduction.
+2. The directory structure of the whole project is as follows:
 
 ```bash
-python train.py --dataset Psfh  --root_path your DATA_DIR --max_epochs 100 --output_dir your OUT_DIR  --img_size 256 --base_lr 0.001 --batch_size 4
+.
+├── TransUNet
+│   ├──datasets
+│   │       └── dataset_*.py
+│   ├──train.py
+│   ├──test.py
+│   └──...
+├── model
+│   └── vit_checkpoint
+│       └── imagenet21k
+│           ├── R50+ViT-B_16.npz
+│           └── *.npz
+└── data
+    └──Synapse
+        ├── test_vol_h5
+        │   ├── case0001.npy.h5
+        │   └── *.npy.h5
+        └── train_npz
+            ├── case0005_slice000.npz
+            └── *.npz
 ```
-
-- Test 
-
-```bash
-python num_pre.py
-```
-
-## References
-* [Swin-Unet](https://github.com/HuCaoFighting/Swin-Unet)
-* [BiFormer](https://github.com/rayleizhu/BiFormer)
-
