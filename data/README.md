@@ -4,8 +4,8 @@ The directory structure of the data is as follows:
 ```bash
 .
 
-├──data
-│    └──Psfh
+|──data
+|    └──Psfh
 |         └──train_npz
 |                 └──00001.npz(4000)
 |                    00002.npz
